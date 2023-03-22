@@ -15,8 +15,9 @@ $(document)
     setInterval(rotateLabel, 3000);
 
     var updateDemo = function (ua) {
-        var result = UAParser(ua);
-        if(!result) return;
+        // var result = UAParser(ua);
+        // if(!result) return;
+        UAParser(ua).withClientHints().then(function(result) {
         $('#ua-txt').transition('flip vertical', function () {
             $(this).text(result.ua);
             $(this).transition('flip vertical');
@@ -99,6 +100,7 @@ $(document)
             $(this).transition('fly up', function () {
                 $(this).transition('pulse');
             });
+        });
         });
     }
     updateDemo();
